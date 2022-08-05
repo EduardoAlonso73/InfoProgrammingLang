@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applanguagepgm.databinding.ItemCardLanguageBinding
 
-class LanguageAdapter(private var nLanguage:MutableList<Language>,private var listener:OnClickListener)
+class LanguageAdapter(private var nLanguage:MutableList<LanguageEntity>, private var listener:OnClickListener)
     :RecyclerView.Adapter<LanguageAdapter.ViewHolder>() {
 
     private lateinit var mContext: Context
@@ -27,14 +27,14 @@ class LanguageAdapter(private var nLanguage:MutableList<Language>,private var li
     override fun getItemCount():Int= nLanguage.size
 
 
-    fun addLanguage(listLanguage: Language) {
+    fun addLanguage(listLanguage: LanguageEntity) {
         nLanguage.add(listLanguage)
         notifyDataSetChanged()
     }
 
     inner class  ViewHolder(view: View):RecyclerView.ViewHolder(view){
         val binding =ItemCardLanguageBinding.bind(view)
-        fun setListener(language: Language){
+        fun setListener(language: LanguageEntity){
             binding.root.setOnClickListener{
                 listener.onClick(language)
             }
