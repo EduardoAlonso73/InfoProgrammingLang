@@ -1,8 +1,11 @@
 package com.example.applanguagepgm
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 
-data class Language(
-    var id: Long = 0,
+@Entity(tableName = "LanguageAdapter")
+data class LanguageEntity(
+    @PrimaryKey(autoGenerate=true) var id: Long = 0,
     var imgIconLanguage: String = "",
     var nameLanguage: String,
     var year: String = "",
