@@ -1,11 +1,17 @@
 package com.example.applanguagepgm
 
+
 data class Language(
-    var imgIconLanguage: String,
-    var year:String,
-    var paradigma:String,
-    var useLgn:String,
-    var createBy:String,
-    var infCreator:String,
-    var description:String,
-    var favorite:Boolean)
+    var id: Long = 0,
+    var imgIconLanguage: String = "",
+    var nameLanguage: String,
+    var year: String = "",
+    var paradigma: String = "",
+    var useLgn: String = "",
+    var createBy: String = "",
+    var infCreator: String = "",
+    var description: String = "",
+    var isFavorite: Boolean = false
+)
+
+
