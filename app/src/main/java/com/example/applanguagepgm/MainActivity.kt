@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity(),OnClickListener {
 
 
         mBinding.btnSave.setOnClickListener {
-            val listLanguage= Language(nameLanguage=mBinding.etName.text.toString().toString())
+            val listLanguage= LanguageEntity(nameLanguage=mBinding.etName.text.toString().toString())
             mAdapter.addLanguage(listLanguage)
         }
 
