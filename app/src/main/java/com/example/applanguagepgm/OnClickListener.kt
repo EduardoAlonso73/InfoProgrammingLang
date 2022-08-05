@@ -1,5 +1,5 @@
 package com.example.applanguagepgm
 
 interface OnClickListener {
-    fun onClick(language: Language){}
+    fun onClick(language: LanguageEntity){}
 }
