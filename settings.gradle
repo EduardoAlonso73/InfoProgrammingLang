@@ -10,6 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        jcenter()//complement when  using the  Anko  library
     }
 }
 rootProject.name = "appLanguagePgm"

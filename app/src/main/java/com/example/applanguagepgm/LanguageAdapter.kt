@@ -36,8 +36,6 @@ class LanguageAdapter(private var nLanguage:MutableList<LanguageEntity>, private
     fun setListLanguage(languageList: MutableList<LanguageEntity>) {
         this.nLanguage=languageList
         notifyDataSetChanged()
-
-
     }
 
     fun updateLanguage(languageEntity: LanguageEntity) {
@@ -48,11 +46,21 @@ class LanguageAdapter(private var nLanguage:MutableList<LanguageEntity>, private
         }
     }
 
+    fun deleteLang(languageEntity: LanguageEntity) {
+        val i=nLanguage.indexOf(languageEntity)
+        if (i!=-1){
+            nLanguage.removeAt(i)
+            notifyItemRemoved(i)
+        }
+    }
+
     inner class  ViewHolder(view: View):RecyclerView.ViewHolder(view){
         val binding =ItemCardLanguageBinding.bind(view)
         fun setListener(language: LanguageEntity){
             binding.root.setOnClickListener{ listener.onClick(language) }//Componet card_view
             binding.cbFavorite.setOnClickListener{listener.onFavoriteLanguage(language)}
+            binding.root.setOnLongClickListener { listener.onDeleteLang(language)
+                true}
         }
     }
 }
