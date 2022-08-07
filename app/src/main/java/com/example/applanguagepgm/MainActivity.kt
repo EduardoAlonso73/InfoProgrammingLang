@@ -24,6 +24,16 @@ class MainActivity : AppCompatActivity(),OnClickListener {
         }
 
         initRecyclerView()
+        mBinding.fab.setOnClickListener { launchEditFragment() }
+    }
+
+    private fun launchEditFragment(){
+        val fragment=EditLangFragment()
+        val fragmentManager=supportFragmentManager
+        val fragmentTransaction=fragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.contreinerMain,fragment)
+        fragmentTransaction.addToBackStack(null)// Me permite regresar al main activity
+        fragmentTransaction.commit()
     }
 
     private fun initRecyclerView() {
