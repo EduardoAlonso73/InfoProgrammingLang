@@ -6,6 +6,6 @@ import androidx.room.RoomDatabase
 @Database(entities = arrayOf(LanguageEntity::class), version = 1)
 
 abstract class LanguageDatabase:RoomDatabase() {
-    abstract  fun languageDoq():LanguageDao
+    abstract  fun languageDao():LanguageDao
 
 }
