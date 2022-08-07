@@ -22,6 +22,7 @@ class LanguageAdapter(private var nLanguage:MutableList<LanguageEntity>, private
         with(holder){
             setListener(language)
             binding.tvNameLanguage.text=language.nameLanguage
+            binding.cbFavorite.isChecked=language.isFavorite
         }
     }
     override fun getItemCount():Int= nLanguage.size
@@ -32,12 +33,26 @@ class LanguageAdapter(private var nLanguage:MutableList<LanguageEntity>, private
         notifyDataSetChanged()
     }
 
+    fun setListLanguage(languageList: MutableList<LanguageEntity>) {
+        this.nLanguage=languageList
+        notifyDataSetChanged()
+
+
+    }
+
+    fun updateLanguage(languageEntity: LanguageEntity) {
+        val i=nLanguage.indexOf(languageEntity)
+        if (i!=-1){
+            nLanguage.set(i,languageEntity)
+            notifyItemChanged(i)
+        }
+    }
+
     inner class  ViewHolder(view: View):RecyclerView.ViewHolder(view){
         val binding =ItemCardLanguageBinding.bind(view)
         fun setListener(language: LanguageEntity){
-            binding.root.setOnClickListener{
-                listener.onClick(language)
-            }
+            binding.root.setOnClickListener{ listener.onClick(language) }//Componet card_view
+            binding.cbFavorite.setOnClickListener{listener.onFavoriteLanguage(language)}
         }
     }
 }
