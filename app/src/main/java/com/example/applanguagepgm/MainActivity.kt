@@ -1,5 +1,4 @@
 package com.example.applanguagepgm
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
@@ -19,7 +18,7 @@ class MainActivity : AppCompatActivity(),OnClickListener {
 
 
         mBinding.btnSave.setOnClickListener {
-            val listLanguage= LanguageEntity(nameLanguage=mBinding.etName.text.toString().toString())
+            val listLanguage= LanguageEntity(nameLanguage= mBinding.etName.text.toString())
             Thread{LanguageApplication.database.languageDao().addLanguage(listLanguage)}.start()
             mAdapter.addLanguage(listLanguage)
         }
@@ -50,6 +49,13 @@ class MainActivity : AppCompatActivity(),OnClickListener {
         doAsync {
             LanguageApplication.database.languageDao().updateLanguage(languageEntity)
             uiThread { mAdapter.updateLanguage(languageEntity) }
+        }
+    }
+
+    override fun onDeleteLang(languageEntity: LanguageEntity) {
+        doAsync {
+             LanguageApplication.database.languageDao().deleteLanguage(languageEntity)
+            uiThread { mAdapter.deleteLang(languageEntity) }
         }
     }
 
