@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.applanguagepgm.databinding.ActivityMainBinding
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity(),OnClickListener {
     private lateinit var mBinding: ActivityMainBinding
@@ -18,6 +20,7 @@ class MainActivity : AppCompatActivity(),OnClickListener {
 
         mBinding.btnSave.setOnClickListener {
             val listLanguage= LanguageEntity(nameLanguage=mBinding.etName.text.toString().toString())
+            Thread{LanguageApplication.database.languageDao().addLanguage(listLanguage)}.start()
             mAdapter.addLanguage(listLanguage)
         }
 
@@ -26,6 +29,7 @@ class MainActivity : AppCompatActivity(),OnClickListener {
 
     private fun initRecyclerView() {
         mAdapter=LanguageAdapter(mutableListOf(),this)
+        this.getListLanguage()
         mGridLayoutManager=GridLayoutManager(this,1)
         mBinding.recyclerView.apply{
             setHasFixedSize(true)
@@ -33,5 +37,21 @@ class MainActivity : AppCompatActivity(),OnClickListener {
             adapter=mAdapter
         }
     }
-    
+
+
+    private fun getListLanguage() {
+        doAsync { val languageList=LanguageApplication.database.languageDao().getListLanguage()
+        uiThread { mAdapter.setListLanguage(languageList) }
+        }
+    }
+
+    override fun onFavoriteLanguage(languageEntity: LanguageEntity) {
+        languageEntity.isFavorite=! languageEntity.isFavorite
+        doAsync {
+            LanguageApplication.database.languageDao().updateLanguage(languageEntity)
+            uiThread { mAdapter.updateLanguage(languageEntity) }
+        }
+    }
+
+
 }
