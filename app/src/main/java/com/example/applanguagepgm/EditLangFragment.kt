@@ -16,7 +16,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [EditLang.newInstance] factory method to
  * create an instance of this fragment.
  */
-class EditLang : Fragment() {
+class EditLangFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
