@@ -9,7 +9,7 @@ data class LanguageEntity(
     var imgIconLanguage: String = "",
     var nameLanguage: String,
     var year: String = "",
-    var paradigma: String = "",
+    var fotoCreateBy: String = "",
     var useLgn: String = "",
     var createBy: String = "",
     var infCreator: String = "",
