@@ -7,7 +7,7 @@ interface LanguageDao {
     @Query("SELECT * FROM languageadapter")
     fun getListLanguage():MutableList<LanguageEntity>
     @Insert
-    fun addLanguage(languageEntity: LanguageEntity)
+    fun addLanguage(languageEntity: LanguageEntity):Long
     // ******* FUNCTION FOR UPDATE STORES *******
     @Update
     fun updateLanguage(languageEntity: LanguageEntity)
