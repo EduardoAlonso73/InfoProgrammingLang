@@ -4,4 +4,5 @@ interface OnClickListener {
     fun onClick(language: LanguageEntity){}
     fun onFavoriteLanguage(languageEntity: LanguageEntity)
     fun onDeleteLang(languageEntity: LanguageEntity){}
+
 }
