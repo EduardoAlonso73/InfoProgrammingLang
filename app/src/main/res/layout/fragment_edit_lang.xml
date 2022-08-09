@@ -61,7 +61,7 @@
            </com.google.android.material.textfield.TextInputLayout>
 
            <com.google.android.material.textfield.TextInputLayout
-               android:id="@+id/tilName"
+               android:id="@+id/tilYear"
                android:layout_width="100sp"
                android:textSize="11sp"
                android:layout_height="wrap_content"
@@ -73,11 +73,10 @@
                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                app:startIconDrawable="@drawable/ic_year">
                <com.google.android.material.textfield.TextInputEditText
-                   android:id="@+id/etName"
-
+                   android:id="@+id/etYear"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:inputType="textCapWords"/>
+                   android:inputType="number"/>
 
            </com.google.android.material.textfield.TextInputLayout>
 

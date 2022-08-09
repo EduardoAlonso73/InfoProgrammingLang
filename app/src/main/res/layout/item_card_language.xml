@@ -92,7 +92,7 @@
                     android:src="@drawable/ic_launcher_background"
                     android:contentDescription="@string/string_icon" />
                 <TextView
-                    android:id="@+id/tv_paradigma"
+                    android:id="@+id/tv_year"
                     android:layout_width="wrap_content"
                     android:textColor="@color/white"
                     android:layout_height="match_parent"
