@@ -1,12 +1,14 @@
 package com.example.applanguagepgm
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.applanguagepgm.databinding.ActivityMainBinding
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class MainActivity : AppCompatActivity(),OnClickListener {
+class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
     private lateinit var mBinding: ActivityMainBinding
     private  lateinit var  mAdapter:LanguageAdapter
     private lateinit var  mGridLayoutManager: GridLayoutManager
@@ -17,11 +19,11 @@ class MainActivity : AppCompatActivity(),OnClickListener {
         setContentView(mBinding.root)
 
 
-        mBinding.btnSave.setOnClickListener {
+   /*     mBinding.btnSave.setOnClickListener {
             val listLanguage= LanguageEntity(nameLanguage= mBinding.etName.text.toString())
             Thread{LanguageApplication.database.languageDao().addLanguage(listLanguage)}.start()
-            mAdapter.addLanguage(listLanguage)
-        }
+
+        }*/
 
         initRecyclerView()
         mBinding.fab.setOnClickListener { launchEditFragment() }
@@ -54,6 +56,10 @@ class MainActivity : AppCompatActivity(),OnClickListener {
         }
     }
 
+    override fun onClick(language: LanguageEntity) {
+        Toast.makeText(this,"Hola mundo",Toast.LENGTH_SHORT).show()
+    }
+
     override fun onFavoriteLanguage(languageEntity: LanguageEntity) {
         languageEntity.isFavorite=! languageEntity.isFavorite
         doAsync {
@@ -67,6 +73,16 @@ class MainActivity : AppCompatActivity(),OnClickListener {
              LanguageApplication.database.languageDao().deleteLanguage(languageEntity)
             uiThread { mAdapter.deleteLang(languageEntity) }
         }
+    }
+
+
+    /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+          ---------- Function MainAux ----------
+  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+
+
+    override fun addLanguage(languageEntity: LanguageEntity) {
+        mAdapter.addLanguage(languageEntity)
     }
 
 
