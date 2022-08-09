@@ -22,7 +22,12 @@ class LanguageAdapter(private var nLanguage:MutableList<LanguageEntity>, private
         with(holder){
             setListener(language)
             binding.tvNameLanguage.text=language.nameLanguage
+            binding.tvDescription.text=language.description
+            binding.tvYear.text=language.year
+            binding.tvUseLanguage.text=language.useLgn
             binding.cbFavorite.isChecked=language.isFavorite
+
+
         }
     }
     override fun getItemCount():Int= nLanguage.size
