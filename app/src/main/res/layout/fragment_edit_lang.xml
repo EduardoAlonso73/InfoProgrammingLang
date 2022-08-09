@@ -3,9 +3,299 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:elevation="10dp"
     tools:context=".EditLangFragment">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:padding="10dp">
+
+       <TextView
+           android:layout_marginStart="12dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Add new Language  "
+           android:textSize="30sp"
+           android:textStyle="bold"
+           android:textColor="@color/black" />
+       <TextView
+           android:layout_marginStart="12dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="The datas about the language programming "
+           android:textSize="16sp"
+           android:layout_marginBottom="12dp"
+           android:textStyle="normal"
+           android:textColor="@color/black" />
+       <LinearLayout
+           android:paddingStart="12dp"
+           android:paddingEnd="12dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/tilNameLang"
+               android:layout_width="210sp"
+               android:textSize="11sp"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:hint="Lenguaje de prog.."
+               app:helperText="Requerido"
+
+               app:endIconMode="clear_text"
+               android:layout_marginEnd="5dp"
+               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+               app:startIconDrawable="@drawable/ic_code_lang">
+               <com.google.android.material.textfield.TextInputEditText
+                   android:id="@+id/etNameLang"
+
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:inputType="textCapWords"/>
+
+           </com.google.android.material.textfield.TextInputLayout>
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/tilName"
+               android:layout_width="100sp"
+               android:textSize="11sp"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:hint="Lenguaje de prog.."
+               app:helperText="Año"
+               app:endIconMode="clear_text"
+               android:layout_marginEnd="5dp"
+               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+               app:startIconDrawable="@drawable/ic_year">
+               <com.google.android.material.textfield.TextInputEditText
+                   android:id="@+id/etName"
+
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:inputType="textCapWords"/>
+
+           </com.google.android.material.textfield.TextInputLayout>
+
+       </LinearLayout>
+       <LinearLayout
+           android:paddingStart="12dp"
+           android:paddingEnd="12dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/tilUsedLang"
+               android:layout_width="0dp"
+               android:hint="Proposito"
+               app:helperText="Requerido"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               app:endIconMode="clear_text"
+               android:layout_marginEnd="5dp"
+               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+               app:startIconDrawable="@drawable/ic_used">
+
+               <com.google.android.material.textfield.TextInputEditText
+
+                   android:id="@+id/etUsedLang"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:inputType="textCapWords"/>
+
+           </com.google.android.material.textfield.TextInputLayout>
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/tilCreateBy"
+               android:layout_width="0dp"
+               android:hint="Creado por "
+               app:helperText="Requerido"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               app:endIconMode="clear_text"
+               android:layout_marginEnd="5dp"
+               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+               app:startIconDrawable="@drawable/ic_create_by">
+
+               <com.google.android.material.textfield.TextInputEditText
+
+                   android:id="@+id/etCreateBy"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:inputType="textCapWords"/>
+
+           </com.google.android.material.textfield.TextInputLayout>
+
+
+
+       </LinearLayout>
+       <LinearLayout
+           android:paddingStart="12dp"
+           android:paddingEnd="12dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/tilUrlIconLang"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:hint="Url de la image de langu..."
+               app:helperText="Requerido"
+               app:endIconMode="clear_text"
+               android:layout_marginEnd="5dp"
+               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+               app:startIconDrawable="@drawable/ic_link">
+
+               <com.google.android.material.textfield.TextInputEditText
+                   android:id="@+id/etUrlIconLang"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:inputType="textMultiLine"/>
+
+           </com.google.android.material.textfield.TextInputLayout>
+
+           <ImageView
+               android:id="@+id/imglUrlIconLang"
+               android:layout_width="75dp"
+               android:layout_height="75dp"
+               android:background="@drawable/border_radius"
+               android:layout_marginStart="16dp"
+               android:contentDescription="TODO"
+               android:src="@drawable/ic_img" />
+
+
+
+       </LinearLayout>
+       <LinearLayout
+           android:paddingStart="12dp"
+           android:paddingEnd="12dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/tilUrlImgCreateBy"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:hint="Url foto del creador"
+               app:helperText="Requerido"
+               app:endIconMode="clear_text"
+               android:layout_marginEnd="5dp"
+               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+               app:startIconDrawable="@drawable/ic_link">
+
+               <com.google.android.material.textfield.TextInputEditText
+                   android:id="@+id/etlUrlImgCreateBy"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:inputType="textMultiLine"/>
+
+           </com.google.android.material.textfield.TextInputLayout>
+
+           <ImageView
+               android:id="@+id/imgUrlImgCreateBy"
+               android:layout_width="75dp"
+               android:background="@drawable/border_radius"
+               android:layout_height="75dp"
+               android:layout_marginStart="16dp"
+               android:contentDescription="TODO"
+               android:src="@drawable/ic_img" />
+
+
+
+
+
+       </LinearLayout>
+       <LinearLayout
+           android:paddingStart="12dp"
+           android:paddingEnd="12dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/tiInfCreateBy"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:hint="Url informaciorn sobre el creador"
+               app:helperText="Requerido"
+               app:endIconMode="clear_text"
+               android:layout_marginEnd="5dp"
+               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+               app:startIconDrawable="@drawable/ic_link">
+
+               <com.google.android.material.textfield.TextInputEditText
+                   android:id="@+id/etiInfCreateBy"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:inputType="textMultiLine"/>
+
+           </com.google.android.material.textfield.TextInputLayout>
+
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/tiInfLanguage"
+               android:layout_width="match_parent"
+               android:hint="Informacion sobre el lenguage"
+               app:helperText="Requerido"
+               android:layout_height="wrap_content"
+               app:endIconMode="clear_text"
+               android:layout_marginEnd="5dp"
+               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+               <com.google.android.material.textfield.TextInputEditText
+                   android:id="@+id/etiInfLanguage"
+                   android:layout_width="match_parent"
+                   android:layout_height="190dp"
+                   android:inputType="textMultiLine"/>
+
+           </com.google.android.material.textfield.TextInputLayout>
+
+
+
+       </LinearLayout>
+       <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSave"
+        android:backgroundTint="@color/green"
+        android:text="Save"
+        android:padding="12dp"
+        app:icon="@drawable/ic_save"
+        android:layout_width="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:hint="Save" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCancel"
+        android:padding="12dp"
+        android:backgroundTint="@color/red"
+        android:text="Cancel"
+        app:icon="@drawable/ic_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Cancel" />
+</LinearLayout>
+
+
+   </LinearLayout>
+
+ 
+
+
+
 
 
 
