@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.applanguagepgm.databinding.ItemCardLanguageBinding
 
 class LanguageAdapter(private var nLanguage:MutableList<LanguageEntity>, private var listener:OnClickListener)
@@ -26,9 +28,12 @@ class LanguageAdapter(private var nLanguage:MutableList<LanguageEntity>, private
             binding.tvYear.text=language.year
             binding.tvUseLanguage.text=language.useLgn
             binding.cbFavorite.isChecked=language.isFavorite
-
-
         }
+        Glide.with(mContext)
+            .load(language.imgIconLanguage)
+            .centerCrop()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(holder.binding.ImgLanguage)
     }
     override fun getItemCount():Int= nLanguage.size
 

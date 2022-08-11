@@ -1,12 +1,19 @@
 package com.example.applanguagepgm
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.applanguagepgm.databinding.FragmentEditLangBinding
+import com.google.android.material.textfield.TextInputEditText
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import kotlin.concurrent.thread
@@ -29,8 +36,14 @@ class EditLangFragment : Fragment() {
         mActivity?.supportActionBar?.hide()
 
         with(mBinding){
-            btnCancel.setOnClickListener { mActivity?.onBackPressed() }
+            btnCancel.setOnClickListener {
+                mActivity?.onBackPressed()
+                hideKeyboard()
+            }
+
             btnSave.setOnClickListener { addLang() }
+            etUrlIconLang.addTextChangedListener {showPreviewImage(mBinding.etUrlIconLang.text.toString(), mBinding.imglUrlIconLang) }
+            etlUrlImgCreateBy.addTextChangedListener {showPreviewImage(mBinding.etlUrlImgCreateBy.text.toString(),mBinding.imgUrlImgCreateBy)}
         }
     }
 
@@ -40,6 +53,24 @@ class EditLangFragment : Fragment() {
         mActivity?.supportActionBar?.show()
     }
 
+    /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+          ----------- Other Function ------------
+  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+
+    private fun showPreviewImage(url:String,intoImg:ImageView) {
+        Glide.with(this)
+            .load(url)
+            .centerCrop()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(intoImg)
+    }
+
+    private  fun hideKeyboard(){
+        val imm =mActivity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(requireView().windowToken,0)
+        //  imm.hideSoftInputFromWindow(view?.windowToken,0)    // Otro forma de hacerlo
+
+    }
     /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
             ----------- Method for BD ------------
     -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
@@ -57,6 +88,7 @@ class EditLangFragment : Fragment() {
         doAsync {
             lang.id=LanguageApplication.database.languageDao().addLanguage(lang)
             uiThread {
+                hideKeyboard()
                 mActivity?.addLanguage(lang)
                 mActivity?.onBackPressed()
         }
