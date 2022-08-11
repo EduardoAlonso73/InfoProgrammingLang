@@ -2,6 +2,9 @@ package com.example.applanguagepgm
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.applanguagepgm.databinding.ActivityMainBinding
@@ -12,6 +15,7 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
     private lateinit var mBinding: ActivityMainBinding
     private  lateinit var  mAdapter:LanguageAdapter
     private lateinit var  mGridLayoutManager: GridLayoutManager
+    private  var isView: Boolean=false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,11 +23,6 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
         setContentView(mBinding.root)
 
 
-   /*     mBinding.btnSave.setOnClickListener {
-            val listLanguage= LanguageEntity(nameLanguage= mBinding.etName.text.toString())
-            Thread{LanguageApplication.database.languageDao().addLanguage(listLanguage)}.start()
-
-        }*/
 
         initRecyclerView()
         mBinding.fab.setOnClickListener { launchEditFragment() }
@@ -55,9 +54,45 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
         uiThread { mAdapter.setListLanguage(languageList) }
         }
     }
+    /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+              ----------- Menu action ------------
+      -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.action_option, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_view -> {
+                isView=true
+                Toast.makeText(this,"Hola View ",Toast.LENGTH_SHORT).show()
+                mBinding.fab.hide()
+            }
+            R.id.action_edit-> {
+                isView=false
+                Toast.makeText(this,"Hola Edit",Toast.LENGTH_SHORT).show()
+                mBinding.fab.show()
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+    /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+      ----Function the inteface OnClinckListener ------
+    -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
     override fun onClick(language: LanguageEntity) {
-        Toast.makeText(this,"Hola mundo",Toast.LENGTH_SHORT).show()
+
+        when (isView){
+            true ->{
+                Toast.makeText(this,"View '👀 ",Toast.LENGTH_SHORT).show()
+            }
+            else ->{
+                Toast.makeText(this,"Edit ✍",Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 
     override fun onFavoriteLanguage(languageEntity: LanguageEntity) {
