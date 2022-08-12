@@ -36,9 +36,8 @@ class EditLangFragment : Fragment() {
         mActivity?.supportActionBar?.hide()
 
         with(mBinding){
-            btnCancel.setOnClickListener {
-                mActivity?.onBackPressed()
-                hideKeyboard()
+            btnCancel.setOnClickListener { mActivity?.onBackPressed()
+            //    hideKeyboard()
             }
 
             btnSave.setOnClickListener { addLang() }
@@ -50,6 +49,7 @@ class EditLangFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+       // hideKeyboard()
         mActivity?.supportActionBar?.show()
     }
 
