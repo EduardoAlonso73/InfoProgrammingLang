@@ -67,7 +67,7 @@ class LanguageAdapter(private var nLanguage:MutableList<LanguageEntity>, private
     inner class  ViewHolder(view: View):RecyclerView.ViewHolder(view){
         val binding =ItemCardLanguageBinding.bind(view)
         fun setListener(language: LanguageEntity){
-            binding.root.setOnClickListener{ listener.onClick(language) }//Componet card_view
+            binding.root.setOnClickListener{ listener.onClickItem(language.id) }//Componet card_view
             binding.cbFavorite.setOnClickListener{listener.onFavoriteLanguage(language)}
             binding.root.setOnLongClickListener { listener.onDeleteLang(language)
                 true}
