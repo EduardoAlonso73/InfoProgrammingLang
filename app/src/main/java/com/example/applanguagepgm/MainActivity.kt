@@ -37,6 +37,15 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
         fragmentTransaction.commit()
     }
 
+    private fun launchViewFragment(){
+        val fragmentView=ViewLangFragment()
+        val fragmentManager=supportFragmentManager
+        val fragmentTransaction=fragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.contreinerMain,fragmentView)
+        fragmentTransaction.addToBackStack(null)// Me permite regresar al main activity
+        fragmentTransaction.commit()
+    }
+
     private fun initRecyclerView() {
         mAdapter=LanguageAdapter(mutableListOf(),this)
         this.getListLanguage()
@@ -87,6 +96,7 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
         when (isView){
             true ->{
                 Toast.makeText(this,"View '👀 ",Toast.LENGTH_SHORT).show()
+                launchViewFragment()
             }
             else ->{
                 val arg=Bundle()
