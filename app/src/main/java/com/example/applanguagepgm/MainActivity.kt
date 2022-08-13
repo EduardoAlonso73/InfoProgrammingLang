@@ -1,10 +1,8 @@
 package com.example.applanguagepgm
-import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.applanguagepgm.databinding.ActivityMainBinding
@@ -28,8 +26,10 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
         mBinding.fab.setOnClickListener { launchEditFragment() }
     }
 
-    private fun launchEditFragment(){
+    private fun launchEditFragment(args: Bundle?=null) {
         val fragment=EditLangFragment()
+        if(args!=null)fragment.arguments=args
+
         val fragmentManager=supportFragmentManager
         val fragmentTransaction=fragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.contreinerMain,fragment)
@@ -82,14 +82,16 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
       ----Function the inteface OnClinckListener ------
     -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
-    override fun onClick(language: LanguageEntity) {
+    override fun onClickItem(langId: Long) {
 
         when (isView){
             true ->{
                 Toast.makeText(this,"View '👀 ",Toast.LENGTH_SHORT).show()
             }
             else ->{
-                Toast.makeText(this,"Edit ✍",Toast.LENGTH_SHORT).show()
+                val arg=Bundle()
+                arg.putLong(getString(R.string.arg_id),langId)
+                launchEditFragment(arg)
             }
         }
 
@@ -99,7 +101,7 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
         languageEntity.isFavorite=! languageEntity.isFavorite
         doAsync {
             LanguageApplication.database.languageDao().updateLanguage(languageEntity)
-            uiThread { mAdapter.updateLanguage(languageEntity) }
+            uiThread { updateStore(languageEntity) }
         }
     }
 
@@ -118,6 +120,10 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
 
     override fun addLanguage(languageEntity: LanguageEntity) {
         mAdapter.addLanguage(languageEntity)
+    }
+
+    override fun updateStore(languageEntity: LanguageEntity) {
+        mAdapter.updateLanguage(languageEntity)
     }
 
 
