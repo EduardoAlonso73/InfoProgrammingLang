@@ -130,7 +130,7 @@ class EditLangFragment : Fragment() {
 
                 if(isEdit) {
                     Toast.makeText(context, "Update", Toast.LENGTH_SHORT).show()
-                    mActivity?.updateStore(mLangEntity!!)
+                    mActivity?.updateLang(mLangEntity!!)
                 }
                 else {
                     Toast.makeText(context, "Add", Toast.LENGTH_SHORT).show()

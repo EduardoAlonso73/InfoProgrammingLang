@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
         languageEntity.isFavorite=! languageEntity.isFavorite
         doAsync {
             LanguageApplication.database.languageDao().updateLanguage(languageEntity)
-            uiThread { updateStore(languageEntity) }
+            uiThread { updateLang(languageEntity) }
         }
     }
 
@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
         mAdapter.addLanguage(languageEntity)
     }
 
-    override fun updateStore(languageEntity: LanguageEntity) {
+    override fun updateLang(languageEntity: LanguageEntity) {
         mAdapter.updateLanguage(languageEntity)
     }
 
