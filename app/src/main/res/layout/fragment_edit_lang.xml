@@ -7,7 +7,6 @@
     android:background="@color/white"
     android:elevation="10dp"
     tools:context=".EditLangFragment">
-
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
@@ -17,37 +16,36 @@
        <androidx.constraintlayout.widget.ConstraintLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content">
-           <TextView
-               android:layout_marginStart="12dp"
-               android:layout_marginEnd="30sp"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="Add new Language"
-               android:textSize="30sp"
+           <com.google.android.material.imageview.ShapeableImageView
+               android:layout_width="match_parent"
+               android:layout_height="180dp"
+               app:shapeAppearanceOverlay="@style/circle2"
+               android:scaleType="centerCrop"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toTopOf="parent"
-               android:textStyle="bold"
-               android:textColor="@color/black" />
+               android:src="@drawable/background_edti"/>
 
            <ImageButton
                android:id="@+id/btnCancel"
-               app:layout_constraintEnd_toEndOf="parent"
+               android:layout_margin="5dp"
+               app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toTopOf="parent"
-               app:layout_constraintBottom_toBottomOf="parent"
                android:layout_width="wrap_content"
                android:layout_height="match_parent"
-               android:background="@color/white"
-               android:src="@drawable/ic_close" />
+               android:background="@color/transparant"
+               android:src="@drawable/ic_arrow_back" />
 
        </androidx.constraintlayout.widget.ConstraintLayout>
        <TextView
-           android:layout_marginStart="12dp"
+
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="The datas about the language programming "
-           android:textSize="16sp"
+           android:layout_marginStart="5dp"
+           android:layout_marginTop="10dp"
+           android:text="@string/string_title"
+           android:textSize="20sp"
            android:layout_marginBottom="12dp"
-           android:textStyle="normal"
+           android:textStyle="bold"
            android:textColor="@color/black" />
        <LinearLayout
            android:paddingStart="12dp"
@@ -62,20 +60,17 @@
                android:textSize="11sp"
                android:layout_height="wrap_content"
                android:layout_weight="1"
-               android:hint="Lenguaje de prog.."
+               android:hint="@string/name_lang"
                app:helperText="Requerido"
-
                app:endIconMode="clear_text"
                android:layout_marginEnd="5dp"
                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                app:startIconDrawable="@drawable/ic_code_lang">
                <com.google.android.material.textfield.TextInputEditText
                    android:id="@+id/etNameLang"
-
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:inputType="textCapWords"/>
-
            </com.google.android.material.textfield.TextInputLayout>
 
            <com.google.android.material.textfield.TextInputLayout
@@ -84,7 +79,7 @@
                android:textSize="11sp"
                android:layout_height="wrap_content"
                android:layout_weight="1"
-               android:hint="Lenguaje de prog.."
+               android:hint="@string/string_year_creating"
                app:helperText="Año"
                app:endIconMode="clear_text"
                android:layout_marginEnd="5dp"
@@ -95,9 +90,7 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:inputType="number"/>
-
            </com.google.android.material.textfield.TextInputLayout>
-
        </LinearLayout>
        <LinearLayout
            android:paddingStart="12dp"
@@ -105,21 +98,17 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:orientation="horizontal">
-
            <com.google.android.material.textfield.TextInputLayout
                android:id="@+id/tilUsedLang"
                android:layout_width="0dp"
-               android:hint="Proposito"
-               app:helperText="Requerido"
+               android:hint="@string/string_purpose"
                android:layout_height="wrap_content"
                android:layout_weight="1"
                app:endIconMode="clear_text"
                android:layout_marginEnd="5dp"
                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                app:startIconDrawable="@drawable/ic_used">
-
                <com.google.android.material.textfield.TextInputEditText
-
                    android:id="@+id/etUsedLang"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
@@ -130,7 +119,7 @@
            <com.google.android.material.textfield.TextInputLayout
                android:id="@+id/tilCreateBy"
                android:layout_width="0dp"
-               android:hint="Creado por "
+               android:hint="@string/string_created_by"
                app:helperText="Requerido"
                android:layout_height="wrap_content"
                android:layout_weight="1"
@@ -138,18 +127,13 @@
                android:layout_marginEnd="5dp"
                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                app:startIconDrawable="@drawable/ic_create_by">
-
                <com.google.android.material.textfield.TextInputEditText
-
                    android:id="@+id/etCreateBy"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:inputType="textCapWords"/>
 
            </com.google.android.material.textfield.TextInputLayout>
-
-
-
        </LinearLayout>
        <LinearLayout
            android:paddingStart="12dp"
@@ -163,7 +147,7 @@
                android:layout_width="0dp"
                android:layout_height="wrap_content"
                android:layout_weight="1"
-               android:hint="Url de la image de langu..."
+               android:hint="@string/string_url_of_icon_lang"
                app:helperText="Requerido"
                app:endIconMode="clear_text"
                android:layout_marginEnd="5dp"
@@ -185,11 +169,8 @@
                android:elevation="-1dp"
                android:background="@drawable/border_radius"
                android:layout_marginStart="16dp"
-               android:contentDescription="TODO"
+               android:contentDescription="@string/string_logo_lang"
                android:src="@drawable/ic_img" />
-
-
-
        </LinearLayout>
        <LinearLayout
            android:paddingStart="12dp"
@@ -203,8 +184,7 @@
                android:layout_width="0dp"
                android:layout_height="wrap_content"
                android:layout_weight="1"
-               android:hint="Url foto del creador"
-               app:helperText="Requerido"
+               android:hint="@string/url_photo_developer"
                app:endIconMode="clear_text"
                android:layout_marginEnd="5dp"
                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -215,7 +195,6 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:inputType="textMultiLine"/>
-
            </com.google.android.material.textfield.TextInputLayout>
 
            <ImageView
@@ -224,12 +203,8 @@
                android:background="@drawable/border_radius"
                android:layout_height="75dp"
                android:layout_marginStart="16dp"
-               android:contentDescription="TODO"
+               android:contentDescription="@string/string_photo_developer"
                android:src="@drawable/ic_img" />
-
-
-
-
 
        </LinearLayout>
        <LinearLayout
@@ -243,26 +218,22 @@
                android:id="@+id/tiInfCreateBy"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:hint="Url informaciorn sobre el creador"
-               app:helperText="Requerido"
+               android:hint="@string/url_developer"
                app:endIconMode="clear_text"
                android:layout_marginEnd="5dp"
                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                app:startIconDrawable="@drawable/ic_link">
-
                <com.google.android.material.textfield.TextInputEditText
                    android:id="@+id/etiInfCreateBy"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:inputType="textMultiLine"/>
-
            </com.google.android.material.textfield.TextInputLayout>
-
 
            <com.google.android.material.textfield.TextInputLayout
                android:id="@+id/tiInfLanguage"
                android:layout_width="match_parent"
-               android:hint="Informacion sobre el lenguage"
+               android:hint="@string/string_about_the_developer"
                app:helperText="Requerido"
                android:layout_height="wrap_content"
                app:endIconMode="clear_text"
@@ -277,8 +248,6 @@
 
            </com.google.android.material.textfield.TextInputLayout>
 
-
-
        </LinearLayout>
        <LinearLayout
     android:layout_width="match_parent"
@@ -288,13 +257,11 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSave"
         android:backgroundTint="@color/green"
-        android:text="Save"
         android:padding="12dp"
-        app:icon="@drawable/ic_save"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_margin="10dp"
         android:layout_height="wrap_content"
-        android:hint="Save" />
+        android:hint="@string/string_save" />
 
 
 </LinearLayout>
