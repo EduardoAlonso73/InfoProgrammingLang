@@ -37,8 +37,11 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
         fragmentTransaction.commit()
     }
 
-    private fun launchViewFragment(){
+    private fun launchViewFragment(args: Bundle?=null) {
         val fragmentView=ViewLangFragment()
+
+        if(args!=null)fragmentView.arguments=args
+
         val fragmentManager=supportFragmentManager
         val fragmentTransaction=fragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.contreinerMain,fragmentView)
@@ -75,14 +78,11 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
         when (item.itemId) {
             R.id.action_view -> {
                 isView=true
-                Toast.makeText(this,"Hola View ",Toast.LENGTH_SHORT).show()
                 mBinding.fab.hide()
             }
             R.id.action_edit-> {
                 isView=false
-                Toast.makeText(this,"Hola Edit",Toast.LENGTH_SHORT).show()
                 mBinding.fab.show()
-
             }
         }
         return super.onOptionsItemSelected(item)
@@ -93,17 +93,17 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
 
     override fun onClickItem(langId: Long) {
 
-        when (isView){
-            true ->{
+        if(isView){
                 Toast.makeText(this,"View '👀 ",Toast.LENGTH_SHORT).show()
-                launchViewFragment()
-            }
-            else ->{
+                val arg=Bundle()
+                arg.putLong(getString(R.string.arg_id),langId)
+                launchViewFragment(arg)
+            } else {
                 val arg=Bundle()
                 arg.putLong(getString(R.string.arg_id),langId)
                 launchEditFragment(arg)
             }
-        }
+
 
     }
 
