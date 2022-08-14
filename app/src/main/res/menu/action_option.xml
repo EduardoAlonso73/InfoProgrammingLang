@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_view"
-        android:title="view"
+        android:title="View"
         android:icon="@drawable/ic_used"
         app:showAsAction="never"/>
     <item
