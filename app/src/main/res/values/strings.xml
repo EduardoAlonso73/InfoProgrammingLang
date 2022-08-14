@@ -5,10 +5,26 @@
     <string name="string_desription_log_text">Lorem ipsum dolor sit amet consectetur adipiscing elit iaculis felis venenatis, donec in ridiculus quisque molestie eget fames natoque habitant netus, primis montes porttitor</string>
     <string name="string_button_llike">"button to do check "</string>
     <string name="string_icon">icon</string>
-    <string name="string_summary_text">Lorem ipsum.</string>
+    <string name="string_summary_text">Lorem</string>
     <string name="string_add">botton for add  datas</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="arg_id">key_id</string>
     <string name="string_lorem_ipsum">Lorem ipsum dolor sit amet consectetur adipiscing elit, imperdiet dictumst gravida nostra neque tortor posuere senectus, semper bibendum taciti ornare non scelerisque. Morbi mattis habitasse natoque magna parturient in pretium dictumst, eleifend curae proin venenatis cras aptent a penatibus egestas, class eros tortor mus purus suscipit commodo.</string>
+    <string name="string_description_language">Description about the language</string>
+    <string name="string_foto_developer">foto of developer</string>
+    <string name="name_developer">Name developer</string>
+    <string name="string_name_lang">Name  programming lang</string>
+    <string name="string_save">Save</string>
+    <string name="string_about_the_developer">About the developer</string>
+    <string name="url_developer">Url about the developer</string>
+    <string name="string_photo_developer">photo_of_developer</string>
+    <string name="url_photo_developer">Url of the developer phote</string>
+    <string name="string_logo_lang">TODO</string>
+    <string name="string_url_of_icon_lang">Url of icon lang</string>
+    <string name="string_created_by">Created by</string>
+    <string name="string_purpose">purpose</string>
+    <string name="string_year_creating">Year creating</string>
+    <string name="name_lang">Name programming Lang</string>
+    <string name="string_title">The datas about the language \nprogramming</string>
 </resources>
