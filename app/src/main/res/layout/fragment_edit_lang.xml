@@ -258,10 +258,13 @@
         android:id="@+id/btnSave"
         android:backgroundTint="@color/green"
         android:padding="12dp"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
-        android:layout_margin="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_height="wrap_content"
-        android:hint="@string/string_save" />
+        android:text="@string/string_save" />
 
 
 </LinearLayout>
