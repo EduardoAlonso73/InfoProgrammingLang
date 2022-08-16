@@ -10,4 +10,15 @@
     <color name="green">#5FD068</color>
     <color name="blue">#46B5D1</color>
     <color name="transparant">#00FFFFFF</color>
+
+    <color name="primaryColor">#303f9f</color>
+    <color name="primaryLightColor">#5156DA</color>
+    <color name="primaryDarkColor">#001970</color>
+    <color name="secondaryColor">#5c6bc0</color>
+    <color name="secondaryLightColor">#8e99f3</color>
+    <color name="secondaryDarkColor">#26418f</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#ffffff</color>
+    <color name="yellow">#E3CD09</color>
+
 </resources>
