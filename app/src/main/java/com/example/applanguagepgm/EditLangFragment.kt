@@ -13,10 +13,10 @@ import androidx.core.widget.addTextChangedListener
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.applanguagepgm.databinding.FragmentEditLangBinding
-import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-import kotlin.concurrent.thread
 
 
 class EditLangFragment : Fragment() {
@@ -52,8 +52,16 @@ class EditLangFragment : Fragment() {
         with(mBinding){
             btnCancel.setOnClickListener { mActivity?.onBackPressed()/*hideKeyboard()*/ }
             btnSave.setOnClickListener { addLang() }
-            etUrlIconLang.addTextChangedListener {showPreviewImage(mBinding.etUrlIconLang.text.toString(), mBinding.imglUrlIconLang) }
+            //etUrlIconLang.addTextChangedListener {showPreviewImage(mBinding.etUrlIconLang.text.toString(), mBinding.imglUrlIconLang) }
             etlUrlImgCreateBy.addTextChangedListener {showPreviewImage(mBinding.etlUrlImgCreateBy.text.toString(),mBinding.imgUrlImgCreateBy)}
+             etNameLang.addTextChangedListener { validInput(mBinding.tilNameLang) }
+            etCreateBy.addTextChangedListener { validInput(mBinding.tilCreateBy) }
+            etUrlIconLang.addTextChangedListener { validInput(mBinding.tilUrlIconLang)
+                showPreviewImage(it.toString(), mBinding.imglUrlIconLang)
+            }
+            etiInfLanguage.addTextChangedListener { validInput(mBinding.tilUrlIconLang)
+            }
+
         }
     }
 
@@ -111,34 +119,49 @@ class EditLangFragment : Fragment() {
     -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* */
 
     private fun addLang() {
-           with(mLangEntity!!) {
-            nameLanguage = mBinding.etNameLang.text.toString().trim()
-            year = mBinding.etYear.text.toString().trim()
-            useLgn = mBinding.etUsedLang.text.toString().trim()
-            createBy = mBinding.etCreateBy.text.toString().trim()
-            imgIconLanguage = mBinding.etUrlIconLang.text.toString().trim()
-            fotoCreateBy = mBinding.etlUrlImgCreateBy.text.toString().trim()
-            infCreator = mBinding.etiInfCreateBy.text.toString().trim()
-            description = mBinding.etiInfLanguage.text.toString().trim()
+if(  mLangEntity!=null && validInput(mBinding.tiInfLanguage,mBinding.tilCreateBy,mBinding.tilUrlIconLang,mBinding.tilNameLang )) {
+    with(mLangEntity!!) {
+        nameLanguage = mBinding.etNameLang.text.toString().trim()
+        year = mBinding.etYear.text.toString().trim()
+        useLgn = mBinding.etUsedLang.text.toString().trim()
+        createBy = mBinding.etCreateBy.text.toString().trim()
+        imgIconLanguage = mBinding.etUrlIconLang.text.toString().trim()
+        fotoCreateBy = mBinding.etlUrlImgCreateBy.text.toString().trim()
+        infCreator = mBinding.etiInfCreateBy.text.toString().trim()
+        description = mBinding.etiInfLanguage.text.toString().trim()
+    }
+
+    doAsync {
+        if (isEdit) LanguageApplication.database.languageDao().updateLanguage(mLangEntity!!)
+        else mLangEntity!!.id =
+            LanguageApplication.database.languageDao().addLanguage(mLangEntity!!)
+        uiThread {
+            hideKeyboard()
+
+            if (isEdit) {
+                Toast.makeText(context, "Update", Toast.LENGTH_SHORT).show()
+                mActivity?.updateLang(mLangEntity!!)
+            } else {
+                Toast.makeText(context, "Add", Toast.LENGTH_SHORT).show()
+                mActivity?.addLanguage(mLangEntity!!)
+            }
+            mActivity?.onBackPressed()
         }
 
-        doAsync {
-            if (isEdit)LanguageApplication.database.languageDao().updateLanguage(mLangEntity!!)
-            else mLangEntity!!.id=LanguageApplication.database.languageDao().addLanguage(mLangEntity!!)
-            uiThread {
-                hideKeyboard()
+    }
+}
+    }
 
-                if(isEdit) {
-                    Toast.makeText(context, "Update", Toast.LENGTH_SHORT).show()
-                    mActivity?.updateLang(mLangEntity!!)
-                }
-                else {
-                    Toast.makeText(context, "Add", Toast.LENGTH_SHORT).show()
-                    mActivity?.addLanguage(mLangEntity!!)
-                }
-                mActivity?.onBackPressed()
+    private fun validInput(vararg  textFields:TextInputLayout): Boolean {
+        var isValid = true
+        for (textField in textFields){
+            if(textField.editText?.text.toString().trim().isEmpty()){
+                textField.error=getString(R.string.helper_required)
+                isValid=false
+            }else textField.error=null
         }
-        }
+        if (!isValid) Snackbar.make(mBinding.root,"Revise los campos requeridos", Snackbar.LENGTH_SHORT).show()
+        return isValid
     }
 
 }
