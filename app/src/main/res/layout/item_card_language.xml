@@ -25,9 +25,9 @@
         android:layout_width="match_parent"
         android:layout_marginStart="-50dp"
         android:layout_height="125dp"
-        app:cardCornerRadius="5dp"
+        app:cardCornerRadius="15dp"
         app:cardElevation="-1dp"
-        android:backgroundTint="@color/red">
+        android:backgroundTint="@color/blue">
         <LinearLayout
             android:id="@+id/conteiner"
             android:layout_width="match_parent"

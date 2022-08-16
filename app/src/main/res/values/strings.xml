@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">appLanguagePgm</string>
+    <string name="app_name">Lang </string>
     <string name="img_prgm_langu">Icon for programming language</string>
     <string name="string_main_title">Title</string>
     <string name="string_desription_log_text">Lorem ipsum dolor sit amet consectetur adipiscing elit iaculis felis venenatis, donec in ridiculus quisque molestie eget fames natoque habitant netus, primis montes porttitor</string>
@@ -27,4 +27,5 @@
     <string name="string_year_creating">Year creating</string>
     <string name="name_lang">Name programming Lang</string>
     <string name="string_title">The datas about the language \nprogramming</string>
+    <string name="helper_required">Requerido</string>
 </resources>
