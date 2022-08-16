@@ -116,9 +116,11 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
     }
 
     override fun onDeleteLang(languageEntity: LanguageEntity) {
+        if(!isView){
         doAsync {
              LanguageApplication.database.languageDao().deleteLanguage(languageEntity)
             uiThread { mAdapter.deleteLang(languageEntity) }
+        }
         }
     }
 
