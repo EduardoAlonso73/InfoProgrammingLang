@@ -1,4 +1,6 @@
 package com.example.applanguagepgm
+import android.app.AlertDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -7,6 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.applanguagepgm.databinding.ActivityMainBinding
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
@@ -19,8 +22,6 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
         super.onCreate(savedInstanceState)
         mBinding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-
-
 
         initRecyclerView()
         mBinding.fab.setOnClickListener { launchEditFragment() }
@@ -63,7 +64,7 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
 
     private fun getListLanguage() {
         doAsync { val languageList=LanguageApplication.database.languageDao().getListLanguage()
-        uiThread { mAdapter.setListLanguage(languageList) }
+            uiThread { mAdapter.setListLanguage(languageList) }
         }
     }
     /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
@@ -94,15 +95,14 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
     override fun onClickItem(langId: Long) {
 
         if(isView){
-                Toast.makeText(this,"View '👀 ",Toast.LENGTH_SHORT).show()
-                val arg=Bundle()
-                arg.putLong(getString(R.string.arg_id),langId)
-                launchViewFragment(arg)
-            } else {
-                val arg=Bundle()
-                arg.putLong(getString(R.string.arg_id),langId)
-                launchEditFragment(arg)
-            }
+            val arg=Bundle()
+            arg.putLong(getString(R.string.arg_id),langId)
+            launchViewFragment(arg)
+        } else {
+            val arg=Bundle()
+            arg.putLong(getString(R.string.arg_id),langId)
+            launchEditFragment(arg)
+        }
 
 
     }
@@ -117,10 +117,24 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
 
     override fun onDeleteLang(languageEntity: LanguageEntity) {
         if(!isView){
-        doAsync {
-             LanguageApplication.database.languageDao().deleteLanguage(languageEntity)
-            uiThread { mAdapter.deleteLang(languageEntity) }
-        }
+            val alertDialogBuilder = AlertDialog.Builder(this)
+            with(alertDialogBuilder){
+                setTitle("Delete lang")
+                setIcon(R.drawable.ic_delete)
+                setMessage("Do you want detele ?")
+                setCancelable(false)
+                setNegativeButton("Cancelar",null)
+                setPositiveButton("Delete"){_,i ->
+                    doAsync {
+                        LanguageApplication.database.languageDao().deleteLanguage(languageEntity)
+                        uiThread { mAdapter.deleteLang(languageEntity) }
+                    }
+                }
+            }.also {
+                val alertDialog = alertDialogBuilder.create()
+                alertDialog.show()
+            }
+
         }
     }
 
@@ -136,6 +150,14 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
 
     override fun updateLang(languageEntity: LanguageEntity) {
         mAdapter.updateLanguage(languageEntity)
+    }
+
+    override fun startIntent(intent: Intent) {
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        } else {
+            Toast.makeText(this, "No se encontro una app compatible", Toast.LENGTH_SHORT).show()
+        }
     }
 
 
