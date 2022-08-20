@@ -28,4 +28,6 @@
     <string name="name_lang">Name programming Lang</string>
     <string name="string_title">The datas about the language \nprogramming</string>
     <string name="helper_required">Requerido</string>
+    <string name="string_back">arrow back</string>
+    <string name="string_header">image header</string>
 </resources>
