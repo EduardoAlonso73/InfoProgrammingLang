@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
     private fun initRecyclerView() {
         mAdapter=LanguageAdapter(mutableListOf(),this)
         this.getListLanguage()
-        mGridLayoutManager=GridLayoutManager(this,1)
+        mGridLayoutManager=GridLayoutManager(this,resources.getInteger(R.integer.main_column))
         mBinding.recyclerView.apply{
             setHasFixedSize(true)
             layoutManager=mGridLayoutManager
