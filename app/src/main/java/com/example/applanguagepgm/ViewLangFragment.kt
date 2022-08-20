@@ -1,6 +1,9 @@
 package com.example.applanguagepgm
 
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.applanguagepgm.databinding.FragmentViewLangBinding
@@ -32,8 +36,12 @@ class ViewLangFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mActivity = activity as? MainActivity
         mActivity?.supportActionBar?.hide()
-        mBinding.imgbBack.setOnClickListener { mActivity?.onBackPressed() }
-        mBinding.imgDeveloper.setOnClickListener { Toast.makeText(view.context, urlInfDeveloper, Toast.LENGTH_SHORT).show() }
+
+        with(mBinding){
+            imgbBack.setOnClickListener { mActivity?.onBackPressed() }
+            imgDeveloper.setOnClickListener {goToWebsite(urlInfDeveloper) }
+        }
+
 
         val id=arguments?.getLong(getString(R.string.arg_id),0)
         if (id != null && id!=0L) {
@@ -83,5 +91,19 @@ class ViewLangFragment : Fragment() {
         // hideKeyboard()
         mActivity?.supportActionBar?.show()
     }
+
+
+    private fun goToWebsite(website:String){
+        if(!website.isEmpty()){
+            val websiteIntert=Intent().apply {
+                action=Intent.ACTION_VIEW
+                data=Uri.parse((website))
+            }
+            mActivity?.startIntent(websiteIntert)
+        }else{
+            Toast.makeText(mBinding.root.context, "An app was not was found to open it", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
 }
