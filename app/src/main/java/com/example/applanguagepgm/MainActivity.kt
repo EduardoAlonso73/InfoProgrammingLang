@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
     private lateinit var mBinding: ActivityMainBinding
     private  lateinit var  mAdapter:LanguageAdapter
     private lateinit var  mGridLayoutManager: GridLayoutManager
-    private  var isView: Boolean=false
+    private  var isView: Boolean=true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity(),OnClickListener,MainAux {
 
         initRecyclerView()
         mBinding.fab.setOnClickListener { launchEditFragment() }
+        mBinding.fab.hide()
     }
 
     private fun launchEditFragment(args: Bundle?=null) {
