@@ -43,17 +43,22 @@
           android:layout_marginTop="-25dp"
           android:orientation="vertical"
           app:layout_constraintTop_toBottomOf="@+id/imgPoster">
-          <ImageView
-              android:id="@+id/imgLang"
+          <androidx.cardview.widget.CardView
               android:layout_width="110dp"
               android:layout_height="110dp"
+              app:cardCornerRadius="50dp"
               android:elevation="20dp"
-              android:background="@drawable/border_radius"
               android:layout_gravity="center_horizontal"
-              android:src="@drawable/ic_code_lang"
-
-              android:contentDescription="@string/string_logo_lang"/>
-
+              android:padding="2dp">
+              <com.google.android.material.imageview.ShapeableImageView
+                  android:id="@+id/imgLang"
+                  android:layout_width="105dp"
+                  app:shapeAppearanceOverlay="@style/circle"
+                  android:layout_height="105dp"
+                  android:layout_gravity="center"
+                  android:src="@drawable/ic_code_lang"
+                  android:contentDescription="@string/string_logo_lang"/>
+          </androidx.cardview.widget.CardView>
 
           <androidx.cardview.widget.CardView
               android:layout_width="match_parent"
@@ -63,7 +68,7 @@
               android:layout_marginTop="-70dp"
               android:backgroundTint="#03BFAC"
               app:cardCornerRadius="10dp"
-              app:cardElevation="10dp">
+              app:cardElevation="1dp">
               <LinearLayout
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
@@ -166,9 +171,10 @@
           android:layout_marginStart="16dp"
           android:layout_marginTop="20sp"
           app:layout_constraintTop_toBottomOf="@id/vLine"/>
-      <ImageButton
+       <com.google.android.material.imageview.ShapeableImageView
           android:id="@+id/imgDeveloper"
           android:layout_width="50dp"
+           app:shapeAppearanceOverlay="@style/circle"
           android:src="@drawable/ic_create_by"
           android:layout_height="50dp"
           android:layout_marginTop="30dp"
